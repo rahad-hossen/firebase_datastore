@@ -66,6 +66,13 @@ class _MyHomePageState extends State<MyHomePage> {
       body:Consumer<allData>(
         builder: (context, value, child) =>ListView.builder(
             itemBuilder: (context, index) => ListTile(
+              onTap: (){
+                addData.isUpdate = true;
+                addData.id = value.data[index]['id'];
+                addData.name.text = value.data[index]['name'];
+                addData.email.text = value.data[index]['email'];
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> addData()));
+              },
               title: Text(value.data[index]['name']),
               subtitle: Text(value.data[index]['email']),
               leading: Text('${index+1}'),
@@ -82,6 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: (){
+            addData.isUpdate = false;
+            addData.name.clear();
+            addData.email.clear();
             Navigator.push(context, MaterialPageRoute(builder: (context)=> addData() ));
           },
         child: Icon(Icons.add),

@@ -1,19 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/Manage/DataCalling.dart';
+import 'package:flutter_learn/main.dart';
 import 'package:provider/provider.dart';
 
 class addData extends StatelessWidget{
 
-  TextEditingController name = TextEditingController();
-  TextEditingController email = TextEditingController();
+  static TextEditingController name = TextEditingController();
+  static TextEditingController email = TextEditingController();
+
+  static bool isUpdate = false;
+  static String id = "";
+  // bool isUpdate;
+  // String id, name_, email_;
+  // addData(this.isUpdate,this.id,this.name,this.email);
+  // addData({required String name});
 
   @override
   Widget build(BuildContext context){
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Data"),
+        title: isUpdate ? Text("Update Details"):Text("Add Detalis"),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 20,right: 20),
@@ -27,7 +35,7 @@ class addData extends StatelessWidget{
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  hint: Text("Your Name.."),
+                  hint: isUpdate ? Text("Update Name.."): Text("Your Name.."),
                   label: Text("Name")
                 ),
               ),
@@ -38,7 +46,7 @@ class addData extends StatelessWidget{
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    hint: Text("Your Email.."),
+                    hint: isUpdate ? Text("Update Email.."):Text("Your Email.."),
                     label: Text("Email")
                 ),
               ),
@@ -46,10 +54,17 @@ class addData extends StatelessWidget{
               ,
               OutlinedButton(
                   onPressed: () async {
-                    bool isOk = await (context).read<allData>().addData(name: name.text.toString(), email: email.text.toString());
-                    if(isOk){ Navigator.pop(context);}
+
+                    if (isUpdate){
+                      bool isOk = await (context).read<allData>().UpdateData(id: id, name: name.text.toString(), email: email.text.toString());
+                      if (isOk){Navigator.pop(context);}
+                    }else{
+                      bool isOk = await (context).read<allData>().addData(name: name.text.toString(), email: email.text.toString());
+                      if(isOk){ Navigator.pop(context);}
+                    }
+
                   },
-                  child: Text("Insert in Database")
+                  child: isUpdate ? Text("Update Detalis"):Text("Insert Details")
               )
             ],
           ),

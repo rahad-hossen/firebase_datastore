@@ -45,6 +45,21 @@ class allData extends ChangeNotifier{
 
     notifyListeners();
   }
+  Future<bool> UpdateData({required String id, required String name, required String email}) async {
+
+    try{
+      await dbReferance.doc(id).update({
+        'name' : name,
+        'email' : email,
+      });
+      await loadData();
+    }catch(e){
+      print(e);
+    }
+
+    notifyListeners();
+    return true;
+  }
 
 
 
