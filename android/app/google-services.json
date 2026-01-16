@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "556837801740",
+    "project_id": "fir-learn-a4b74",
+    "storage_bucket": "fir-learn-a4b74.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556837801740:android:b0c2970451b7cffd7d4329",
+        "android_client_info": {
+          "package_name": "com.example.flutter_learn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBaYOEsujbPtUAr8_uW90_oxbhatvB-DA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
