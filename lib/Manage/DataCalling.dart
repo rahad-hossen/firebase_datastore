@@ -18,7 +18,7 @@ class allData extends ChangeNotifier{
     notifyListeners();
   }
 
-  Future<bool> addData({required String name, required String email})  async {
+  Future<bool> addData({required String name, required String email}) async {
 
     var unicCode = DateTime.now().microsecondsSinceEpoch;
 
@@ -34,6 +34,28 @@ class allData extends ChangeNotifier{
     return true;
   }
 
+  Future<void> deleteData({required String id}) async {
+
+    try{
+      await dbReferance.doc(id).delete();
+      await loadData();
+    }catch(e){
+      print(e);
+    }
+
+    notifyListeners();
+  }
+
 
 
 }
+
+
+
+
+
+
+
+
+
+

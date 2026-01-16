@@ -68,8 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
             itemBuilder: (context, index) => ListTile(
               title: Text(value.data[index]['name']),
               subtitle: Text(value.data[index]['email']),
-              leading: Text(index.toString()),
-              trailing: Text(value.data[index]['id']),
+              leading: Text('${index+1}'),
+              trailing: IconButton(
+                onPressed: (){
+                  value.deleteData(id: value.data[index]['id']);
+                },
+                icon: Icon(Icons.delete),
+              )
+
 
           ),itemCount: value.data.length,
         ),
